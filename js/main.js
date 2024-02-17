@@ -34,63 +34,50 @@ function onSubmit(event) {
     }
 }
 
-function validateInput(validate) {
-    return validateEmptyInput(validate) && validateInputLength(validate)
+function validateInput(input) {
+    return validateEmptyInput(input) && validateInputLength(input)
 }
 
-function validateEmptyInput(validate) {
-    return validate.value !== '' ?
-        (validate.classList.add('is-valid'), validate.classList.remove('is-invalid'), true) :
-        (validate.classList.add('is-invalid'), validate.classList.remove('is-valid'), false);
+function validateEmptyInput(input) {
+    return input.value !== '' ?
+        (input.classList.add('is-valid'), input.classList.remove('is-invalid'), true) :
+        (input.classList.add('is-invalid'), input.classList.remove('is-valid'), false);
 }
 
-function validateInputLength(validate) {
+function validateInputLength(input) {
     let maxLength;
-    validate === albumTitle ? maxLength = 20 : maxLength = 40;
-    return validate.value.length <= maxLength ?
-        (validate.classList.add('is-valid'), validate.classList.remove('is-invalid'), true) :
-        (validate.classList.add('is-invalid'), validate.classList.remove('is-valid'), false);
+    input === albumTitle ? maxLength = 20 : maxLength = 40;
+    return input.value.length <= maxLength ?
+        (input.classList.add('is-valid'), input.classList.remove('is-invalid'), true) :
+        (input.classList.add('is-invalid'), input.classList.remove('is-valid'), false);
 }
 
 function createAlbumCards() {
     const albumCard = document.createElement('div');
     const titleAndDescription = document.createElement('div');
-    const img = document.createElement('img');
-    const title = document.createElement('h5');
+    const albumImage = document.createElement('img');
+    const title = document.createElement('h2');
     const description = document.createElement('p');
 
-    // styling albumList and append child
+    // append albumCard to albumList
     albumList.appendChild(albumCard);
 
-    // styling img
-    img.alt = 'album art';
-    img.src = "img/" + albumArt.value;
-    img.style.width = '100%';
-    img.style.maxHeight = '30vh';
-
-    // styling albumCard and append children
-    // albumCard.style.width = '30%';
-    // albumCard.style.height = '30vh';
-    // albumCard.style.marginBottom = '5%';
+    // set background image and append title-and-description banner
     albumCard.style.backgroundImage = 'url("img/' + albumArt.value + '")';
-    // albumCard.style.backgroundSize = 'cover';
-    // albumCard.style.backgroundPosition = 'center';
-    // albumCard.style.backgroundRepeat = 'no-repeat';
-    // albumCard.style.paddingTop = 'calc(30vh - 70.5px)';
+    albumCard.classList.add('album-card');
     albumCard.appendChild(titleAndDescription);
 
+    // styling background image
+    albumImage.alt = 'album art';
+    albumImage.src = "img/" + albumArt.value;
+    albumImage.classList.add('card-img-top');
+
     // styling title and description
-    titleAndDescription.style.display = 'flex';
-    titleAndDescription.style.flexDirection = 'column';
-    titleAndDescription.style.justifyContent = 'space-between';
-    titleAndDescription.style.color = 'black';
-    titleAndDescription.style.backgroundColor = 'white';
+    titleAndDescription.classList.add('title-and-description');
     titleAndDescription.appendChild(title);
     titleAndDescription.appendChild(description);
 
     // assign values to title and description and set font size
     title.textContent = albumTitle.value;
-    title.style.fontSize = '20px';
     description.textContent = albumDescription.value;
-    description.style.fontSize = '15px';
 }
