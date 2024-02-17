@@ -1,0 +1,23 @@
+p {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.card-img-top {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+}
+
+#all-albums-list {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 1%;
+}
+
+.col {
+  width: calc((100% - 2%) / 3);
+  margin-bottom: 1%;
+}
