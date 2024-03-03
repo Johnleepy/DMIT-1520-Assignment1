@@ -47,7 +47,7 @@ function isNonEmptyInput(input) {
 
 function isValidInputLength(input) {
     let maxLength;
-    input === albumTitle ? maxLength = 20 : maxLength = 40;
+    input === albumTitle ? maxLength = 15 : maxLength = 30;
     return input.value.length > 0 && input.value.length <= maxLength ?
         (input.classList.add('is-valid'), input.classList.remove('is-invalid'), true) :
         (input.classList.add('is-invalid'), input.classList.remove('is-valid'), false);
